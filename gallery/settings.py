@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure--5p+ozyn*q5uen!h8&jomm8+x#1yus9xb@mkbcn+g&*h0=*_3-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app','mysite-jen3.onrender.com']
 
 PEXELS_API_KEY = "Qp2zjuzZYjVQa2a3jxnbXl8PKJnIwWYxMMejei2xq4PHKev97nOi8EED"
 
