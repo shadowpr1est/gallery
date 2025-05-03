@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Gallery</title>
+    <link href="{% static 'gallery/css/index.css' %}" rel="stylesheet" />
+</head>
+<body>
+
+    <h1>Image Gallery</h1>
+    <p>Browse our collection of beautiful images. Use the search below to filter by title or description.</p>
+    <form method="GET" action=".">
+        <div class="search-bar">
+            <input type="text" name="search" placeholder="Search images..." value="{{ request.GET.search }}">
+            <button type="submit">🔍</button>
+        </div>
+    </form>
+
+
+    <div class="gallery">
+        {% for image in images %}
+            <div class="image-box">
+                <img src="{{ image }}" alt="Image" onclick="">
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
