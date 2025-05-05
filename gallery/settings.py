@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
-
 import dj_database_url
 from django.conf.global_settings import STATICFILES_DIRS
 
@@ -28,10 +27,10 @@ SECRET_KEY = 'django-insecure--5p+ozyn*q5uen!h8&jomm8+x#1yus9xb@mkbcn+g&*h0=*_3-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app','mysite-jen3.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app','mysite-jen3.onrender.com','*']
 
+os.environ["TOGETHER_API_KEY"] = "0c5766a281f7a185a475f8cb73bf076e2d17e0dba311cabf94f922577875cad0"
 PEXELS_API_KEY = "Qp2zjuzZYjVQa2a3jxnbXl8PKJnIwWYxMMejei2xq4PHKev97nOi8EED"
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -81,19 +80,19 @@ WSGI_APPLICATION = 'gallery.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 # Replace the SQLite DATABASES configuration with PostgreSQL:
-DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://postgres:postgres@localhost:5432/mysitedb',
-        conn_max_age=600
-    )
-}
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
+#     'default': dj_database_url.config(
+#         default='postgresql://postgres:postgres@localhost:5432/mysitedb',
+#         conn_max_age=600
+#     )
 # }
+#
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

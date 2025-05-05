@@ -3,6 +3,6 @@ from django.urls import path, include
 import images
 from . import views
 urlpatterns = [
-    path('', views.index),
-    # path('image/<int:pk>', views.image_detail)
+    path('', views.index,name='index'),
+    path('image/<uuid:image_id>/', views.img_detail,name='detail')
 ]

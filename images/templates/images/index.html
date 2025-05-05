@@ -3,28 +3,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Image Gallery</title>
-    <link href="{% static 'gallery/css/index.css' %}" rel="stylesheet" />
+    <title>Gallery</title>
+    <link href="{% static 'gallery/css/index.css' %}" rel="stylesheet"/>
 </head>
 <body>
 
-    <h1>Image Gallery</h1>
-    <p>Browse our collection of beautiful images. Use the search below to filter by title or description.</p>
-    <form method="GET" action=".">
-        <div class="search-bar">
-            <input type="text" name="search" placeholder="Search images..." value="{{ request.GET.search }}">
-            <button type="submit">🔍</button>
+<div class="centered-container">
+    <h1>Gallery</h1>
+
+    <form method="get" action="{% url 'index' %}">
+        <div class="search-box">
+            <input type="text" name="search" placeholder="Search images..." value="{{ search_value }}">
+            <button type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path
+                        d="M10,2A8,8 0 0,1 18,10C18,12.21 17.21,14.21 15.9,15.67L21.71,21.5L20.29,22.91L14.5,17.09C13.04,18.4 11.04,19.2 9,19.2A8,8 0 0,1 10,2M10,4A6,6 0 0,0 4,10A6,6 0 0,0 10,16A6,6 0 0,0 16,10A6,6 0 0,0 10,4Z"/>
+                </svg>
+            </button>
         </div>
+
+        <div class="checkbox-container">
+    <label class="custom-checkbox">
+        <input type="checkbox" name="ai" {% if ai_checked %}checked{% endif %}>
+        <span class="checkmark"></span>
+        AI Generated
+    </label>
+</div>
+
     </form>
 
-
-    <div class="gallery">
-        {% for image in images %}
-            <div class="image-box">
-                <img src="{{ image }}" alt="Image" onclick="">
-            </div>
-        {% endfor %}
+    <div class="category-container">
+        <a href="{% url 'index' %}?section=all" class="category-item {% if active_section == 'all' %}active{% endif %}">All</a>
+        <a href="{% url 'index' %}?section=ai_generated" class="category-item {% if active_section == 'ai_generated' %}active{% endif %}">AI Generated gallery</a>
     </div>
+</div>
+
+<div class="masonry">
+    {% for image in images %}
+        <div class="image-box">
+            <a href="{% url 'detail' image.id %}">
+                <img src="{{ image.data }}" alt="Image">
+            </a>
+        </div>
+    {% empty %}
+        <p style="text-align:center;">No images found.</p>
+    {% endfor %}
+</div>
 
 </body>
 </html>
