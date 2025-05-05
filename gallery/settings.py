@@ -34,6 +34,7 @@ PEXELS_API_KEY = "Qp2zjuzZYjVQa2a3jxnbXl8PKJnIwWYxMMejei2xq4PHKev97nOi8EED"
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
