@@ -198,9 +198,57 @@ form {
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
+  .spinner-wrapper {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+  }
+
+  .spinner {
+    width: 48px;
+    height: 48px;
+    border: 6px solid #e5e7eb;
+    border-top: 6px solid #8b5cf6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .loading .spinner-wrapper {
+    display: flex;
+  }
+
+  .loading .masonry {
+    display: none;
+  }
+
     </style>
 </head>
 <body>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    const categoryLinks = document.querySelectorAll(".category-item");
+
+    function showSpinner() {
+      document.body.classList.add("loading");
+    }
+
+    if (form) {
+      form.addEventListener("submit", showSpinner);
+    }
+
+    categoryLinks.forEach(link => {
+      link.addEventListener("click", showSpinner);
+    });
+  });
+</script>
 
 <div class="centered-container">
     <h1>Gallery</h1>
@@ -229,6 +277,9 @@ form {
         <a href="{% url 'index' %}?section=all" class="category-item {% if active_section == 'all' %}active{% endif %}">All</a>
         <a href="{% url 'index' %}?section=ai_generated" class="category-item {% if active_section == 'ai_generated' %}active{% endif %}">AI Generated gallery</a>
     </div>
+</div>
+<div class="spinner-wrapper">
+  <div class="spinner"></div>
 </div>
 
 <div class="masonry">

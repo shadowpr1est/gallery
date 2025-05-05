@@ -52,7 +52,7 @@ class PexelsAPI:
             model="black-forest-labs/FLUX.1-schnell-Free",
             width=1024,
             height=768,
-            steps=4,
+            steps=2,
             n=1,
             response_format="b64_json",
             stop=[]

@@ -9,7 +9,8 @@ def index(request):
     section = request.GET.get('section', 'all').lower()
     ai = request.GET.get('ai') == 'on'
     api = PexelsAPI()
-
+    cache.clear()
+    images = api.get_photo('Animal')
 
     if search:
         if ai:
@@ -19,8 +20,6 @@ def index(request):
 
     elif section == 'ai_generated':
         images = api.get_cached_generated_images()
-    else:
-        images = api.get_photo('Animal')
 
     return render(request, 'images/index.html', {
         'images': images,
