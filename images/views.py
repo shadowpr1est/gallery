@@ -9,7 +9,6 @@ def index(request):
     section = request.GET.get('section', 'all').lower()
     ai = request.GET.get('ai') == 'on'
     api = PexelsAPI()
-    cache.clear()
     images = api.get_photo('Animal')
 
     if search:
